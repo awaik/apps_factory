@@ -20,8 +20,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   void initState() {
-    WidgetsBinding.instance!
-        .addPostFrameCallback((_) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
       if (widget.request.isNotEmpty) {
         Provider.of<SearchViewModel>(context, listen: false).getArtists(widget.request);
         _inputController.text = widget.request;
@@ -46,18 +45,25 @@ class _SearchScreenState extends State<SearchScreen> {
         case Status.completed:
           final List<ArtistModel> artists = apiResponse.data as List<ArtistModel>;
           return artists.isNotEmpty
-              ? Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Expanded(
-                      flex: 8,
-                      child: ListView.builder(
+              ? Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Expanded(
+                        flex: 8,
+                        child: ListView.separated(
                           itemCount: artists.length,
                           itemBuilder: (context, index) {
                             return ArtistWidget(artist: artists[index]);
-                          }),
-                    ),
-                  ],
+                          },
+                          separatorBuilder: (context, index) {
+                            return const Divider();
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 )
               : const Center(child: Text('Can\'t find artist for this request'));
         case Status.error:
@@ -107,6 +113,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             color: Colors.grey,
                           ),
                           hintText: 'Find artist',
+                          hintStyle: TextStyle(fontSize: 15.0, color: Colors.grey),
                         )),
                   ),
                 ),
