@@ -1,5 +1,6 @@
 import 'package:apps_factory/app/domain/artist/artist_model.dart';
 import 'package:apps_factory/app/domain/errors/api_response.dart';
+import 'package:apps_factory/app/view/widgets/artist_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,9 +20,13 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   void initState() {
-    // if (widget.request.length > 0) {
-    //   Provider.of<SearchViewModel>(context, listen: false).getArtists(widget.request);
-    // }
+    WidgetsBinding.instance!
+        .addPostFrameCallback((_) {
+      if (widget.request.isNotEmpty) {
+        Provider.of<SearchViewModel>(context, listen: false).getArtists(widget.request);
+        _inputController.text = widget.request;
+      }
+    });
     super.initState();
   }
 
@@ -34,22 +39,27 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     final ApiResponse apiResponse = Provider.of<SearchViewModel>(context).response;
-
     Widget getArtistWidget(BuildContext context, ApiResponse apiResponse) {
-      final List<ArtistModel>? artistList = apiResponse.data as List<ArtistModel>?;
       switch (apiResponse.status) {
         case Status.loading:
           return const Center(child: CircularProgressIndicator());
         case Status.completed:
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: const [
-              Expanded(
-                flex: 8,
-                child: Text('not implemented'),
-              ),
-            ],
-          );
+          final List<ArtistModel> artists = apiResponse.data as List<ArtistModel>;
+          return artists.isNotEmpty
+              ? Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Expanded(
+                      flex: 8,
+                      child: ListView.builder(
+                          itemCount: artists.length,
+                          itemBuilder: (context, index) {
+                            return ArtistWidget(artist: artists[index]);
+                          }),
+                    ),
+                  ],
+                )
+              : const Center(child: Text('Can\'t find artist for this request'));
         case Status.error:
           return Center(
             child: Text(apiResponse.data),
