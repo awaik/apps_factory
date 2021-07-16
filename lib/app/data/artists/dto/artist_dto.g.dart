@@ -9,7 +9,7 @@ part of 'artist_dto.dart';
 ArtistDto _$ArtistDtoFromJson(Map<String, dynamic> json) {
   return ArtistDto(
     name: json['name'] as String,
-    listeners: json['listeners'] as int,
+    listeners: json['listeners'] as String,
     mbid: json['mbid'] as String,
     url: json['url'] as String,
     image: (json['image'] as List<dynamic>)
