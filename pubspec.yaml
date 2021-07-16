@@ -15,7 +15,7 @@ dependencies:
   dio: ^4.0.0
   http: ^0.13.3
   provider: ^5.0.0
-  json_annotation: ^4.1.0
+  json_annotation: ^4.0.0
   retrofit: any
   hive: ^2.0.4
   hive_flutter: ^1.1.0
@@ -25,6 +25,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  json_serializable: ^4.0.2
+  retrofit_generator: any
+  mockito: ^5.0.5
   build_runner: ^2.0.6
   hive_generator: ^1.1.0
   pedantic: ^1.11.0
