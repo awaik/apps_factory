@@ -9,12 +9,13 @@ part of 'artist_dto.dart';
 ArtistDto _$ArtistDtoFromJson(Map<String, dynamic> json) {
   return ArtistDto(
     name: json['name'] as String,
-    listeners: json['listeners'] as String,
-    mbid: json['mbid'] as String,
+    listeners: json['listeners'] as String? ?? '0',
+    mbid: json['mbid'] as String? ?? '',
     url: json['url'] as String,
-    image: (json['image'] as List<dynamic>)
-        .map((e) => ArtistImage.fromJson(e as Map<String, dynamic>))
-        .toList(),
+    image: (json['image'] as List<dynamic>?)
+            ?.map((e) => ApiImage.fromJson(e as Map<String, dynamic>))
+            .toList() ??
+        [],
   );
 }
 

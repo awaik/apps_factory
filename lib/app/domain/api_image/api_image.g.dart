@@ -1,20 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'artist_image.dart';
+part of 'api_image.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ArtistImage _$ArtistImageFromJson(Map<String, dynamic> json) {
-  return ArtistImage(
+ApiImage _$ApiImageFromJson(Map<String, dynamic> json) {
+  return ApiImage(
     link: json['#text'] as String,
     size: _$enumDecode(_$ImageSizeEnumMap, json['size']),
   );
 }
 
-Map<String, dynamic> _$ArtistImageToJson(ArtistImage instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ApiImageToJson(ApiImage instance) => <String, dynamic>{
       '#text': instance.link,
       'size': _$ImageSizeEnumMap[instance.size],
     };

@@ -9,7 +9,7 @@ class ArtistApiRepository {
   Future<List<ArtistModel>> getArtists({String artist = ''}) async {
     final response = await _client.getResponse(artist);
     final jsonData = response['results']['artistmatches']['artist'] as List;
-    final List<ArtistModel> artistList = jsonData.map((tagJson) => ArtistDto.fromJson(tagJson).toModel()).toList();
+    final List<ArtistModel> artistList = jsonData.map((val) => ArtistDto.fromJson(val).toModel()).toList();
     return artistList;
   }
 }

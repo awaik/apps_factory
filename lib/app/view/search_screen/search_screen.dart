@@ -93,7 +93,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     margin: const EdgeInsets.symmetric(horizontal: 20.0),
                     decoration: BoxDecoration(
                       color: Theme.of(context).accentColor.withAlpha(50),
-                      borderRadius: BorderRadius.circular(30.0),
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
                     child: TextField(
                         style: const TextStyle(
