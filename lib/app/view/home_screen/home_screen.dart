@@ -27,10 +27,10 @@ class HomeScreen extends StatelessWidget {
                     margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                     decoration: BoxDecoration(
                       color: Theme.of(context).accentColor.withAlpha(50),
-                      borderRadius: BorderRadius.circular(10.0),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     child: TextField(
-                      style: const TextStyle(fontSize: 15.0, color: Colors.black54),
+                      style: const TextStyle(fontSize: 15, color: Colors.black54),
                       controller: _inputController,
                       onSubmitted: (value) {
                         if (value.isNotEmpty) {
@@ -40,16 +40,25 @@ class HomeScreen extends StatelessWidget {
                           );
                         }
                       },
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         border: InputBorder.none,
                         enabledBorder: InputBorder.none,
                         focusedBorder: InputBorder.none,
-                        prefixIcon: Icon(
-                          Icons.search,
-                          color: Colors.grey,
+                        suffixIcon: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => SearchScreen(request: _inputController.text)),
+                            );
+                          },
+                          child: const Icon(
+                            Icons.search,
+                            color: Colors.grey,
+                          ),
                         ),
                         hintText: 'Find artist',
-                        hintStyle: TextStyle(fontSize: 15.0, color: Colors.grey),
+                        hintStyle: const TextStyle(fontSize: 15.0, color: Colors.grey),
+                        contentPadding: const EdgeInsets.all(20.0),
                       ),
                     ),
                   ),
@@ -76,17 +85,17 @@ class HomeScreen extends StatelessWidget {
                     final HiveAlbumModel? res = box.getAt(index);
                     if (res != null) {
                       return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => AlbumScreen(album: res.toModel())),
-                        );
-                      },
-                      child: ListTile(
-                        title: Text(res.name),
-                        subtitle: Text(res.url),
-                      ),
-                    );
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => AlbumScreen(album: res.toModel())),
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(res.name),
+                          subtitle: Text(res.url),
+                        ),
+                      );
                     } else {
                       return const Text('Emptiness here');
                     }

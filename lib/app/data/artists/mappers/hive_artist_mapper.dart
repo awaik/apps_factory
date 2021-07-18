@@ -5,8 +5,6 @@ import 'package:apps_factory/app/domain/artist/image_size.dart';
 extension HiveArtistMapper on ArtistModel {
   HiveArtistModel toHiveModel() {
 
-    print('++++++++++++++++++++++++++++++11 -- ${images.length}');
-
     return HiveArtistModel(
         listeners: listeners,
         name: name,

@@ -22,8 +22,7 @@ class _SearchScreenState extends State<SearchScreen> {
   void initState() {
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       if (widget.request.isNotEmpty) {
-        Provider.of<SearchViewModel>(context, listen: false)
-            .getArtists(widget.request);
+        Provider.of<SearchViewModel>(context, listen: false).getArtists(widget.request);
         _inputController.text = widget.request;
       }
     });
@@ -38,15 +37,13 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final ApiResponse apiResponse =
-        Provider.of<SearchViewModel>(context).response;
+    final ApiResponse apiResponse = Provider.of<SearchViewModel>(context).response;
     Widget getArtistWidget(BuildContext context, ApiResponse apiResponse) {
       switch (apiResponse.status) {
         case Status.loading:
           return const Center(child: CircularProgressIndicator());
         case Status.completed:
-          final List<ArtistModel> artists =
-              apiResponse.data as List<ArtistModel>;
+          final List<ArtistModel> artists = apiResponse.data as List<ArtistModel>;
           return artists.isNotEmpty
               ? Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -68,8 +65,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     ],
                   ),
                 )
-              : const Center(
-                  child: Text('Can\'t find artist for this request'));
+              : const Center(child: Text('Can\'t find artist for this request'));
         case Status.error:
           return Center(
             child: Text(apiResponse.data),
@@ -106,8 +102,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         ),
                         controller: _inputController,
                         onSubmitted: (value) {
-                          Provider.of<SearchViewModel>(context, listen: false)
-                              .getArtists(_inputController.text);
+                          Provider.of<SearchViewModel>(context, listen: false).getArtists(_inputController.text);
                         },
                         decoration: const InputDecoration(
                           border: InputBorder.none,
@@ -118,8 +113,8 @@ class _SearchScreenState extends State<SearchScreen> {
                             color: Colors.grey,
                           ),
                           hintText: 'Find artist',
-                          hintStyle:
-                              TextStyle(fontSize: 15.0, color: Colors.grey),
+                          hintStyle: TextStyle(fontSize: 15, color: Colors.grey),
+                          contentPadding: EdgeInsets.all(20),
                         )),
                   ),
                 ),
