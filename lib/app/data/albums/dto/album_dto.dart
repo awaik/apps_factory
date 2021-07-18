@@ -24,7 +24,8 @@ class AlbumDto {
       this.image = const [],
       required this.artist});
 
-  factory AlbumDto.fromJson(Map<String, dynamic> json) => _$AlbumDtoFromJson(json);
+  factory AlbumDto.fromJson(Map<String, dynamic> json) =>
+      _$AlbumDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$AlbumDtoToJson(this);
 }

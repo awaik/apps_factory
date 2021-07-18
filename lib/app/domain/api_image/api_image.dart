@@ -12,7 +12,8 @@ class ApiImage {
 
   ApiImage({this.link = '', this.size = ImageSize.small});
 
-  factory ApiImage.fromJson(Map<String, dynamic> json) => _$ApiImageFromJson(json);
+  factory ApiImage.fromJson(Map<String, dynamic> json) =>
+      _$ApiImageFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiImageToJson(this);
 }

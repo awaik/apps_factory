@@ -25,13 +25,16 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     child: TextField(
-                      style: const TextStyle(fontSize: 15.0, color: Colors.black54),
+                      style: const TextStyle(
+                          fontSize: 15.0, color: Colors.black54),
                       controller: _inputController,
                       onSubmitted: (value) {
                         if (value.isNotEmpty) {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => SearchScreen(request: _inputController.text)),
+                            MaterialPageRoute(
+                                builder: (context) => SearchScreen(
+                                    request: _inputController.text)),
                           );
                         }
                       },
@@ -44,7 +47,8 @@ class HomeScreen extends StatelessWidget {
                           color: Colors.grey,
                         ),
                         hintText: 'Find artist',
-                        hintStyle: TextStyle(fontSize: 15.0, color: Colors.grey),
+                        hintStyle:
+                            TextStyle(fontSize: 15.0, color: Colors.grey),
                       ),
                     ),
                   ),

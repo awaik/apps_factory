@@ -14,9 +14,15 @@ class ArtistDto {
   @JsonKey(defaultValue: [])
   List<ApiImage> image;
 
-  ArtistDto({this.name = '', this.listeners = '', this.mbid = '', this.url = '', this.image = const []});
+  ArtistDto(
+      {this.name = '',
+      this.listeners = '',
+      this.mbid = '',
+      this.url = '',
+      this.image = const []});
 
-  factory ArtistDto.fromJson(Map<String, dynamic> json) => _$ArtistDtoFromJson(json);
+  factory ArtistDto.fromJson(Map<String, dynamic> json) =>
+      _$ArtistDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$ArtistDtoToJson(this);
 }

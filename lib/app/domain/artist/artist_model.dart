@@ -7,5 +7,10 @@ class ArtistModel {
   final String url;
   final List<ApiImage> images;
 
-  ArtistModel({this.name = '', this.mbid = '', this.listeners = 0, this.url = '', this.images = const []});
+  ArtistModel(
+      {this.name = '',
+      this.mbid = '',
+      this.listeners = 0,
+      this.url = '',
+      this.images = const []});
 }

@@ -9,5 +9,11 @@ class AlbumModel {
   final List<ApiImage> images;
   final ArtistModel? artist;
 
-  AlbumModel({this.name = '', this.playcount = 0, this.mbid = '', this.url = '', this.images = const [], this.artist});
+  AlbumModel(
+      {this.name = '',
+      this.playcount = 0,
+      this.mbid = '',
+      this.url = '',
+      this.images = const [],
+      this.artist});
 }

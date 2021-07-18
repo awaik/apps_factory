@@ -1,15 +1,16 @@
 import 'package:apps_factory/app/data/albums/dto/album_dto.dart';
-import 'package:apps_factory/app/data/albums/services/album_service.dart';
+import 'package:apps_factory/app/data/albums/services/albums_service.dart';
 import 'package:apps_factory/app/domain/album/album_model.dart';
-import 'package:apps_factory/app/data/albums/mappers/album_mapper.dart';
+import 'package:apps_factory/app/data/albums/mappers/albums_mapper.dart';
 
-class AlbumApiRepository {
+class AlbumsApiRepository {
   final AlbumService _client = AlbumService();
 
   Future<List<AlbumModel>> getAlbums({String mbid = ''}) async {
     final response = await _client.getResponse(mbid);
     final jsonData = response['topalbums']['album'] as List;
-    final List<AlbumModel> albumList = jsonData.map((val) => AlbumDto.fromJson(val).toModel()).toList();
+    final List<AlbumModel> albumList =
+        jsonData.map((val) => AlbumDto.fromJson(val).toModel()).toList();
     return albumList;
   }
 }

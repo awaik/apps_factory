@@ -6,10 +6,11 @@ import '../../services/base_service.dart';
 
 class ArtistService extends BaseService {
   @override
-  Future getResponse(String artist) async {
+  Future getResponse(String request) async {
     dynamic responseJson;
     try {
-      final response = await http.get(Uri.parse('$mediaBaseUrl&method=artist.search&artist=$artist'));
+      final response = await http
+          .get(Uri.parse('$mediaBaseUrl&method=artist.search&artist=$request'));
       responseJson = returnResponse(response);
     } on SocketException {
       throw FetchDataException('No Internet Connection');

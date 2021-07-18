@@ -4,5 +4,10 @@ import 'package:apps_factory/app/domain/album/album_model.dart';
 
 extension AlbumMapper on AlbumDto {
   AlbumModel toModel() => AlbumModel(
-      playcount: playcount, name: name, mbid: mbid, url: url, images: image, artist: artist.toModel());
+      playcount: playcount,
+      name: name,
+      mbid: mbid,
+      url: url,
+      images: image,
+      artist: artist.toModel());
 }

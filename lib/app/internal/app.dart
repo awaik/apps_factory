@@ -1,3 +1,4 @@
+import 'package:apps_factory/app/view/album_screen/model/album_view_model.dart';
 import 'package:apps_factory/app/view/albums_screen/model/albums_view_model.dart';
 import 'package:apps_factory/app/view/home_screen/home_screen.dart';
 import 'package:apps_factory/app/view/search_screen/model/search_view_model.dart';
@@ -11,6 +12,7 @@ class App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(value: SearchViewModel()),
         ChangeNotifierProvider.value(value: AlbumsViewModel()),
+        ChangeNotifierProvider.value(value: AlbumViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
