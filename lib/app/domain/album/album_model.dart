@@ -7,7 +7,7 @@ class AlbumModel {
   final String mbid;
   final String url;
   final List<ApiImage> images;
-  final ArtistModel? artist;
+  final ArtistModel artist;
 
   AlbumModel(
       {this.name = '',
@@ -15,5 +15,5 @@ class AlbumModel {
       this.mbid = '',
       this.url = '',
       this.images = const [],
-      this.artist});
+      required this.artist});
 }

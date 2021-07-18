@@ -1,7 +1,7 @@
 import 'package:apps_factory/app/data/albums/dto/album_dto.dart';
 import 'package:apps_factory/app/data/albums/services/albums_service.dart';
 import 'package:apps_factory/app/domain/album/album_model.dart';
-import 'package:apps_factory/app/data/albums/mappers/albums_mapper.dart';
+import 'package:apps_factory/app/data/albums/mappers/album_mapper.dart';
 
 class AlbumsApiRepository {
   final AlbumService _client = AlbumService();
