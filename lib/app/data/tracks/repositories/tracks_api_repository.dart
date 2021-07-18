@@ -9,11 +9,9 @@ class TracksApiRepository {
   Future<List<TrackModel>> getTracks({String mbid = ''}) async {
     final response = await _client.getResponse(mbid);
     final jsonData = response['album']['tracks']['track'] ?? [];
-    List<TrackModel> trackList;
-    try {
-      trackList = jsonData.map((val) => TrackDto.fromJson(val).toModel()).toList();
-    } catch (e) {
-      trackList = [];
+    final List<TrackModel> trackList = [];
+    for (final t in jsonData) {
+      trackList.add(TrackDto.fromJson(t).toModel());
     }
     return trackList;
   }

@@ -21,8 +21,12 @@ class _AlbumScreenState extends State<AlbumScreen> {
   void initState() {
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       if (widget.album.mbid.isNotEmpty) {
-        Provider.of<AlbumViewModel>(context, listen: false)
-            .getTracks(widget.album.mbid);
+        Provider.of<AlbumViewModel>(context).isCached(widget.album.mbid);
+
+        //if album not cached - get tracks
+        if (Provider.of<AlbumViewModel>(context).cached) {
+          Provider.of<AlbumViewModel>(context, listen: false).getTracks(widget.album.mbid);
+        }
       }
     });
 
@@ -31,8 +35,7 @@ class _AlbumScreenState extends State<AlbumScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final ApiResponse apiResponse =
-        Provider.of<AlbumViewModel>(context).response;
+    final ApiResponse apiResponse = Provider.of<AlbumViewModel>(context).response;
     Widget getTrackWidget(BuildContext context, ApiResponse apiResponse) {
       switch (apiResponse.status) {
         case Status.loading:
@@ -60,8 +63,7 @@ class _AlbumScreenState extends State<AlbumScreen> {
                     ],
                   ),
                 )
-              : const Center(
-                  child: Text('Can\'t find albums for this request'));
+              : const Center(child: Text('Can\'t find albums for this request'));
         case Status.error:
           return Center(
             child: Text(apiResponse.data),
@@ -86,6 +88,14 @@ class _AlbumScreenState extends State<AlbumScreen> {
               album: widget.album,
             ),
           ),
+          Padding(
+              padding: const EdgeInsets.fromLTRB(10, 00, 10, 0),
+              child: TextButton(
+                onPressed: () {},
+                child: Provider.of<AlbumViewModel>(context).cached
+                    ? const Text('Remove from the library', style: TextStyle(color: Colors.deepOrange))
+                    : const Text('Add this album to library', style: TextStyle(color: Colors.deepPurple)),
+              )),
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 00, 10, 20),
             child: Text('Tracks', style: Theme.of(context).textTheme.headline4),

@@ -19,7 +19,7 @@ class AlbumWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //todo when album added to the cashe - add tracks as well
+    //todo when album added to the cache - add tracks as well
     // final _swipeController = SwipeActionController();
     return
         // SwipeActionCell(
