@@ -2,7 +2,6 @@ import 'package:apps_factory/app/domain/album/album_model.dart';
 import 'package:apps_factory/app/domain/errors/api_response.dart';
 import 'package:apps_factory/app/domain/track/track_model.dart';
 import 'package:apps_factory/app/view/album_screen/model/album_view_model.dart';
-import 'package:apps_factory/app/view/home_screen/home_screen.dart';
 import 'package:apps_factory/app/view/widgets/album_widget.dart';
 import 'package:apps_factory/app/view/widgets/track_widget.dart';
 import 'package:flutter/material.dart';
