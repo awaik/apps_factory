@@ -2,6 +2,7 @@ import 'package:apps_factory/app/domain/album/album_model.dart';
 import 'package:apps_factory/app/domain/errors/api_response.dart';
 import 'package:apps_factory/app/domain/track/track_model.dart';
 import 'package:apps_factory/app/view/album_screen/model/album_view_model.dart';
+import 'package:apps_factory/app/view/home_screen/home_screen.dart';
 import 'package:apps_factory/app/view/widgets/album_widget.dart';
 import 'package:apps_factory/app/view/widgets/track_widget.dart';
 import 'package:flutter/material.dart';
@@ -21,10 +22,10 @@ class _AlbumScreenState extends State<AlbumScreen> {
   void initState() {
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       if (widget.album.mbid.isNotEmpty) {
-        Provider.of<AlbumViewModel>(context).isCached(widget.album.mbid);
+        Provider.of<AlbumViewModel>(context, listen: false).isCached(widget.album.mbid);
 
         //if album not cached - get tracks
-        if (Provider.of<AlbumViewModel>(context).cached) {
+        if (Provider.of<AlbumViewModel>(context, listen: false).isCached(widget.album.mbid)) {
           Provider.of<AlbumViewModel>(context, listen: false).getTracks(widget.album.mbid);
         }
       }
@@ -91,8 +92,11 @@ class _AlbumScreenState extends State<AlbumScreen> {
           Padding(
               padding: const EdgeInsets.fromLTRB(10, 00, 10, 0),
               child: TextButton(
-                onPressed: () {},
-                child: Provider.of<AlbumViewModel>(context).cached
+                onPressed: () {
+                  Provider.of<AlbumViewModel>(context, listen: false).manageCacheAlbum(album: widget.album);
+                  Navigator.pop(context);
+                },
+                child: Provider.of<AlbumViewModel>(context).isCached(widget.album.mbid)
                     ? const Text('Remove from the library', style: TextStyle(color: Colors.deepOrange))
                     : const Text('Add this album to library', style: TextStyle(color: Colors.deepPurple)),
               )),

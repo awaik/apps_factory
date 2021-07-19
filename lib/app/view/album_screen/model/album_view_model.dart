@@ -1,5 +1,7 @@
 import 'package:apps_factory/app/data/albums/cache/hive_album_model.dart';
 import 'package:apps_factory/app/data/tracks/repositories/tracks_api_repository.dart';
+import 'package:apps_factory/app/domain/album/album_model.dart';
+import 'package:apps_factory/app/data/albums/mappers/hive_album_mapper.dart';
 import 'package:apps_factory/app/domain/errors/api_response.dart';
 import 'package:apps_factory/app/domain/track/track_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -32,11 +34,19 @@ class AlbumViewModel with ChangeNotifier {
   ApiResponse get response => _apiResponse;
 
   /// check is this album in cache or not
-  bool get cached => _cached;
-  bool _cached = false;
+  bool isCached(String mbid) {
+    return _box.values.map((e) => e.mbid).contains(mbid);
+  }
 
-  void isCached(String mbid) {
-    _cached = _box.values.map((e) => e.mbid).contains(mbid);
+  void manageCacheAlbum({AlbumModel? album, List<TrackModel>? track}) {
+    if (album != null) {
+      if (_box.values.map((e) => e.mbid).contains(album.mbid)) {
+        final index = _box.values.toList().indexWhere((e) => e.mbid == album.mbid);
+        _box.deleteAt(index);
+      } else {
+        _box.add(album.toHiveModel());
+      }
+    }
     notifyListeners();
   }
 }

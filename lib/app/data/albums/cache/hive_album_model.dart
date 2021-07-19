@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:apps_factory/app/data/artists/cache/hive_artist_model.dart';
 import 'package:hive/hive.dart';
 
