@@ -9,6 +9,7 @@ class TracksApiRepository {
   Future<List<TrackModel>> getTracks({String mbid = ''}) async {
     final response = await _client.getResponse(mbid);
     final jsonData = response['album']['tracks']['track'] ?? [];
+    // Important! - API returns different Maps
     // sometimes answer is {track: [{artist: {url:
     // sometimes is {track: {artist: {url:
     final List<TrackModel> trackList = [];

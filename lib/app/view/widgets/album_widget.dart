@@ -77,11 +77,14 @@ class AlbumWidget extends StatelessWidget {
               width: 80,
               height: 80,
               child: CachedNetworkImage(
-                imageUrl: album.images.firstWhere((e) => e.size == ImageSize.small).link,
+                imageUrl: album.images
+                    .firstWhere((e) => e.size == ImageSize.small)
+                    .link,
                 width: 78,
                 height: 78,
                 fit: BoxFit.cover,
-                placeholder: (context, url) => const Center(child: Text('No image')),
+                placeholder: (context, url) =>
+                    const Center(child: Text('No image')),
               ),
             ),
           ],

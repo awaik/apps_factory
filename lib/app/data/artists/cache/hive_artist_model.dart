@@ -15,5 +15,10 @@ class HiveArtistModel extends HiveObject {
   @HiveField(4)
   final String image;
 
-  HiveArtistModel({this.name = '', this.mbid = '', this.listeners = 0, this.url = '', this.image = ''});
+  HiveArtistModel(
+      {this.name = '',
+      this.mbid = '',
+      this.listeners = 0,
+      this.url = '',
+      this.image = ''});
 }

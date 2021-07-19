@@ -6,11 +6,12 @@ import 'package:apps_factory/app/data/artists/mappers/hive_artist_mapper.dart';
 extension HiveAlbumMapper on AlbumModel {
   HiveAlbumModel toHiveModel() {
     return HiveAlbumModel(
-        playcount: playcount,
-        name: name,
-        mbid: mbid,
-        url: url,
-        image: images.firstWhere((e) => e.size == ImageSize.small).link,
-        artist: artist.toHiveModel());
+      playcount: playcount,
+      name: name,
+      mbid: mbid,
+      url: url,
+      image: images.firstWhere((e) => e.size == ImageSize.small).link,
+      artist: artist.toHiveModel(),
+    );
   }
 }

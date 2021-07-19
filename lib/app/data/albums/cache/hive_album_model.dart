@@ -1,4 +1,5 @@
 import 'package:apps_factory/app/data/artists/cache/hive_artist_model.dart';
+import 'package:apps_factory/app/data/tracks/cache/hive_track_model.dart';
 import 'package:hive/hive.dart';
 
 part 'hive_album_model.g.dart';
@@ -17,7 +18,15 @@ class HiveAlbumModel extends HiveObject {
   final String image;
   @HiveField(5)
   final HiveArtistModel artist;
+  @HiveField(6)
+  List<HiveTrackModel>? tracks;
 
   HiveAlbumModel(
-      {this.name = '', this.playcount = 0, this.mbid = '', this.url = '', this.image = '', required this.artist});
+      {this.name = '',
+      this.playcount = 0,
+      this.mbid = '',
+      this.url = '',
+      this.image = '',
+      required this.artist,
+      this.tracks});
 }
