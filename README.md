@@ -1,6 +1,6 @@
 # apps_factory
 
-Flutter App Development
+Made with MVVM pattern and Hive cache.
 
 Develop a music management app with Flutter (iOS and Android) based on the
 LastFM API. With the help of the app the user should be able to search for artists,
